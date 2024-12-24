@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store | Tchulu</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles for cart and checkout form */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+        }
+
+        .navigation {
+            background-color: #333;
+            padding: 10px;
+        }
+
+        .navigation ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .navigation ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .navigation ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .icon-cart {
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 25px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .icon-cart .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+        .cartTab {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 100%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .cartTab.visible {
+            display: block;
+            transform: translateX(0);
+        }
+
+        .cartTab .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .cartTab h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .cartTab .close-cart {
+            font-size: 20px;
+            cursor: pointer;
+            color: #ff0000;
+        }
+
+        .cartTab .cart-list {
+            margin-top: 20px;
+            padding: 10px 0;
+        }
+
+        .cartTab .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cartTab .cart-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .cartTab .cart-item .item-details {
+            flex: 1;
+            margin-left: 15px;
+        }
+
+        .cartTab .cart-item .item-details .item-name {
+            font-weight: bold;
+        }
+
+        .cartTab .cart-item .item-details .item-price {
+            color: #333;
+        }
+
+        .cartTab .cart-item .quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .cartTab .cart-item .quantity button {
+            background: #f1f1f1;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .cartTab .cart-item .remove-btn {
+            background: #ff4d4d;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .cartTab .cart-item .remove-btn:hover {
+            background: #e60000;
+        }
+
+        .cartTab .total {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .checkout-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .checkout-form h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .checkout-form input {
+            margin: 10px 0;
+            padding: 12px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .checkout-form button {
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .checkout-form button:hover {
+            background-color: #45a049;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.visible {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navigation">
+        <ul>
+            <img class="logo" src="_images/logo.png" alt="Tchulu Oils">
+            <li class="currentPage">Home</li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Store Page -->
+    <div class="container">
+        <header class="header">
+            <div class="title">PRODUCTS LIST</div>
+            <div class="icon-cart">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M4 4a1 1 0 0 1 1-1h1.5a1 1 0 0 1 .979.796L7.939 6H19a1 1 0 0 1 .979 1.204l-1.25 6a1 1 0 0 1-.979.796H9.605l.208 1H17a3 3 0 1 1-2.83 2h-2.34a3 3 0 1 1-4.009-1.76L5.686 5H5a1 1 0 0 1-1-1Z" clip-rule="evenodd"/>
+                </svg>
+                <span class="cart-count">0</span>
+            </div>
+        </header>
+
+        <div class="listProduct">
+            <div class="item" data-price="10.00" data-name="Tchulu Essential Oils" data-image="_images/Tchulu.jpg">
+                <img src="_images/Tchulu.jpg" alt="Product 1">
+                <div class="item-info">
+                    <div class="item-name">Tchulu Essential Oils</div>
+                    <div class="item-price">$10.00</div>
+                    <button class="item-button">Add to Cart</button>
+                </div>
+            </div>
+            <div class="item" data-price="15.00" data-name="Tchulu Aromatherapy Oils" data-image="_images/9Tchulu.jpg">
+                <img src="_images/9Tchulu.jpg" alt="Product 2">
+                <div class="item-info">
+                    <div class="item-name">Tchulu Aromatherapy Oils</div>
+                    <div class="item-price">$15.00</div>
+                    <button class="item-button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cartTab">
+        <div class="cart-header">
+            <h1>Your Cart</h1>
+            <span class="close-cart">X</span>
+        </div>
+        <div class="cart-list"></div>
+        <div class="total">
+            <span>Total:</span>
+            <span id="totalAmount">$0.00</span>
+        </div>
+        <button class="checkout">Proceed to Checkout</button>
+    </div>
+
+    <!-- Checkout Form -->
+    <div class="checkout-form">
+        <h2>Checkout</h2>
+        <form id="checkoutForm">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="Enter card number" required>
+            <label for="expiryDate">Expiry Date</label>
+            <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" name="cvv" placeholder="Enter CVV" required>
+
+            <!-- Delivery Information -->
+            <label for="deliveryAddress">Delivery Address</label>
+            <input type="text" id="deliveryAddress" name="deliveryAddress" placeholder="Enter delivery address" required>
+            <label for="contactNumber">Contact Number</label>
+            <input type="text" id="contactNumber" name="contactNumber" placeholder="Enter contact number" required>
+
+            <div class="terms-container">
+                <input type="checkbox" required> I agree to the 
+                <a href="#" target="_blank">Terms and Conditions</a>.
+            </div>
+            <button type="submit">Pay Now</button>
+        </form>
+    </div>
+
+    <div class="overlay"></div>
+
+    <script>
+        // JavaScript to handle cart interactions, checkout, and other functionality
+        let cart = [];
+
+        const cartIcon = document.querySelector('.icon-cart');
+        const cartTab = document.querySelector('.cartTab');
+        const cartList = document.querySelector('.cart-list');
+        const totalAmount = document.getElementById('totalAmount');
+        const checkoutForm = document.querySelector('.checkout-form');
+        const overlay = document.querySelector('.overlay');
+        const closeCartButton = document.querySelector('.close-cart');
+        const checkoutButton = document.querySelector('.checkout');
+        const cartCount = document.querySelector('.cart-count');
+
+        // Add item to cart
+        function addToCart(item) {
+            const existingItem = cart.find(cartItem => cartItem.name === item.name);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...item, quantity: 1 });
+            }
+            updateCartUI();
+        }
+
+        // Update the cart UI
+        function updateCartUI() {
+            cartList.innerHTML = '';
+            let total = 0;
+            cart.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('cart-item');
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="item-details">
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-price">$${item.price}</div>
+                    </div>
+                    <div class="quantity">
+                        <button onclick="updateQuantity('${item.name}', -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button onclick="updateQuantity('${item.name}', 1)">+</button>
+                    </div>
+                    <button class="remove-btn" onclick="removeFromCart('${item.name}')">Remove</button>
+                `;
+                cartList.appendChild(itemElement);
+                total += parseFloat(item.price) * item.quantity;
+            });
+            totalAmount.textContent = `$${total.toFixed(2)}`;
+            cartCount.textContent = cart.length;
+        }
+
+        // Update item quantity
+        function updateQuantity(itemName, amount) {
+            const item = cart.find(cartItem => cartItem.name === itemName);
+            if (item) {
+                item.quantity += amount;
+                if (item.quantity <= 0) {
+                    removeFromCart(itemName);
+                } else {
+                    updateCartUI();
+                }
+            }
+        }
+
+        // Remove item from cart
+        function removeFromCart(itemName) {
+            cart = cart.filter(item => item.name !== itemName);
+            updateCartUI();
+        }
+
+        // Toggle cart tab visibility
+        cartIcon.addEventListener('click', () => {
+            cartTab.classList.toggle('visible');
+        });
+
+        closeCartButton.addEventListener('click', () => {
+            cartTab.classList.remove('visible');
+        });
+
+        checkoutButton.addEventListener('click', () => {
+            cartTab.classList.remove('visible');
+            checkoutForm.style.display = 'block';
+            overlay.classList.add('visible');
+        });
+
+        overlay.addEventListener('click', () => {
+            checkoutForm.style.display = 'none';
+            overlay.classList.remove('visible');
+        });
+
+        // Handle checkout form submission
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Payment successful! Thank you for your purchase.');
+            checkoutForm.style.display = 'none';
+            overlay.classList.remove('visible');
+            cart = [];
+            updateCartUI();
+        });
+
+        // Add items to cart
+        document.querySelectorAll('.item-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const item = e.target.closest('.item');
+                addToCart({
+                    name: item.dataset.name,
+                    price: item.dataset.price,
+                    image: item.querySelector('img').src,
+                });
+            });
+        });
+    </script>
+</body>
+
+<footer id="main-footer">
+    <nav class="secondary-nav">
+      <img src="_images/logo.png" alt="Rehri Logo" class="logo">
+      <ul>
+        <li class="currentPageFooter">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Cake Gallery</a></li>
+        <li><a href="contactUs.html">Contact Us</a></li>
+      </ul>
+    </nav>
+    <p class="copyright">
+      <script>
+        var theDate=new Date()
+        document.write("&copy; " + theDate.getFullYear())
+        document.write(" - Tchulu | Last modified: ")
+        var theModifiedDate=new Date(document.lastModified)
+        document.write(theModifiedDate.toDateString())
+      </script>
+      <br>Powered by "Tchulu" Web Hosting &copy; 2019 Tchulu. All rights reserved.
+  </p>
+    <a href="https://www.facebook.com/mytchulu_oils/"> <img id="fb" src="_images/fb.png" alt="facebook" width="17" height="20"></a>
+    <a href="https://www.instagram.com/tchulu_oils/"><img id="fb" src="_images/instagram.png" alt="Instagram" width="17" height ="20"></a>
+    <p class="copyright2"><a href="terms&conditions.html">Terms & Conditions</a></p>
+    <p class="copyright2"><a href="privacyPolicy.html">Privacy Policy</a></p>
+    <p class="copyright2"><a href="acessibility-statement.html">Accessibility Statement</a></p>
+  </footer>
+</html>

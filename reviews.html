@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Tchulu Oils reviews.">
+    <meta name="keywords" content="Tchulu, oils, reviews, customer feedback">
+    <meta name="author" content="Tchulu Oils">
+    <meta name="revisit" content="30 days">
+    <meta http-equiv="refresh" content="20_seconds">
+    <meta name="language" content="English">
+    <meta name="publisher" content="Suntia Kassoma">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews | Tchulu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navigation">
+        <ul>
+            <img src="_images/logo.png" alt="Tchulu Oils" width="900px" class="logo">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li class="currentPage">Reviews</li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+    
+    <h1 class="title">Tchulu Oils Reviews</h1>
+    
+    <div class="slideshow-wrapper">
+        <!-- Slideshow 1 -->
+        <div class="slideshow-container">
+            <div class="mySlides1 fade">
+                <img src="_images/Review-1.jpg" class="image" alt="Review 1">
+            </div>
+            <div class="mySlides1 fade">
+                <img src="_images/Review-2.jpg" class="image" alt="Review 2">
+            </div>
+            <div class="mySlides1 fade">
+                <img src="_images/Review-3.jpg" class="image" alt="Review 3">
+            </div>
+            <button class="prev" onclick="changeSlide(-1, 'mySlides1', 0)">&#10094;</button>
+            <button class="next" onclick="changeSlide(1, 'mySlides1', 0)">&#10095;</button>
+        </div>
+    
+        <!-- Slideshow 2 -->
+        <div class="slideshow-container">
+            <div class="mySlides2 fade">
+                <img src="_images/Review-7.jpg" class="image" alt="Review 7">
+            </div>
+            <div class="mySlides2 fade">
+                <img src="_images/Review-8.jpg" class="image" alt="Review 8">
+            </div>
+            <div class="mySlides2 fade">
+                <img src="_images/Review-9.jpg" class="image" alt="Review 9">
+            </div>
+            <button class="prev" onclick="changeSlide(-1, 'mySlides2', 1)">&#10094;</button>
+            <button class="next" onclick="changeSlide(1, 'mySlides2', 1)">&#10095;</button>
+        </div>
+    
+        <!-- Slideshow 3 -->
+        <div class="slideshow-container">
+            <div class="mySlides3 fade">
+                <img src="_images/Review-4.jpg" class="image" alt="Review 4">
+            </div>
+            <div class="mySlides3 fade">
+                <img src="_images/Review-5.jpg" class="image" alt="Review 5">
+            </div>
+            <div class="mySlides3 fade">
+                <img src="_images/Review-6.jpg" class="image" alt="Review 6">
+            </div>
+            <button class="prev" onclick="changeSlide(-1, 'mySlides3', 2)">&#10094;</button>
+            <button class="next" onclick="changeSlide(1, 'mySlides3', 2)">&#10095;</button>
+        </div>
+    </div>
+
+    <!-- Modal for Image Zoom -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="zoomedImage">
+        <div id="caption"></div>
+    </div>
+    <footer id="main-footer">
+        <nav class="secondary-nav">
+          <img src="_images/logo.png" alt="Rehri Logo" class="logo">
+          <ul>
+            <li class="currentPageFooter">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Cake Gallery</a></li>
+            <li><a href="contactUs.html">Contact Us</a></li>
+          </ul>
+        </nav>
+        <p class="copyright">
+          <script>
+            var theDate=new Date()
+            document.write("&copy; " + theDate.getFullYear())
+            document.write(" - Tchulu | Last modified: ")
+            var theModifiedDate=new Date(document.lastModified)
+            document.write(theModifiedDate.toDateString())
+          </script>
+          <br>Powered by "Tchulu" Web Hosting &copy; 2019 Tchulu. All rights reserved.</p>
+      </p>
+        <a href="https://www.facebook.com/mytchulu_oils/"> <img id="fb" src="_images/fb.png" alt="facebook" width="17" height="20"></a>
+        <a href="https://www.instagram.com/tchulu_oils/"><img id="fb" src="_images/instagram.png" alt="Instagram" width="17" height ="20"></a>
+        <p class="copyright2"><a href="terms&conditions.html">Terms & Conditions</a></p>
+        <p class="copyright2"><a href="privacyPolicy.html">Privacy Policy</a></p>
+        <p class="copyright2"><a href="acessibility-statement.html">Accessibility Statement</a></p>
+      </footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+[
+    {
+      "id": "1",
+      "name": "Tchulu Essential Oils",
+      "price": 10.00,
+      "image": "_images/Tchulu.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Tchulu Aromatherapy Oils",
+      "price": 15.00,
+      "image": "_images/9Tchulu.jpg"
+    }
+  ]
+  
