@@ -161,6 +161,36 @@ button{
 .slideshow-container {
   width: 30%; /* Adjust as needed to fit three slideshows */
   position: relative;
+  transition: opacity 0.5s ease;
+
+}
+
+@media screen and (max-width: 600px) {
+  .slideshow-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  /* Adjust images and text size */
+ .slideshow-wrapper{
+   gap: 10px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ }
+ 
+ .slideshow-wrapper .image {
+  width: 80%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  transition: filter 0.3s ease;
+  opacity: 10;
+  border: #FFD700 solid 2px;
+ }
 }
 
 /* Images within slides */
@@ -435,6 +465,20 @@ p{
   margin-top: 20px;
   transition: margin-left 0.3s ease;
 }
+
+@media screen and (max-width: 400px) {
+  .form2{
+    width: 100%;
+    margin-left: 0;
+    overflow: hidden;
+  }
+  .form2 button{
+    width: 100%;
+    margin-left: 0;
+  }
+  
+}
+
 .form2 label {
   display: block;
   margin-top: 10px;
@@ -705,6 +749,16 @@ nav li.active {
   font: 26px sans-serif;
 }
 
+@media screen and (max-width: 400px) {
+  .contact-form button {
+    width: 100%;
+  }
+  .contact-form iframe {
+    width: 100%;
+
+  }
+}
+
 .contact form{
   display: flex;
   flex-direction: column;
@@ -782,15 +836,20 @@ nav li.active {
   width: 100%;
   height: 100%;
   background-color: black; /* Completely dark background */
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  opacity:1;
 }
 
 .modal-content {
   margin: auto;
   display: block;
   width: 80%;
-  max-width: 500px;
+  max-width: 700px;
   height: auto;
   animation: zoomIn 0.5s; /* Optional zoom-in animation */
+  opacity: 1;
 }
 
 #caption {
@@ -802,9 +861,9 @@ nav li.active {
 
 .close {
   position: absolute;
-  top: 20px;
-  right: 35px;
-  font-size: 30px;
+  bottom: 20px;
+  right: 150px;
+  font-size: 50px;
   color: white;
   cursor: pointer;
   background: none;
@@ -819,11 +878,50 @@ nav li.active {
   max-width: 100%;
   cursor: pointer;
   transition: transform 0.3s; /* Add smooth hover zoom if needed */
+  object-fit: cover;
+  background-image: none;
 }
 
 .image:hover {
-  transform: scale(1.05); /* Slight zoom effect on hover (optional) */
+  transform: scale(1.1); /* Slight zoom effect on hover (optional) */
 }
+
+@media screen and (max-width: 600px) {
+  /* Increase image size on small screens */
+ .image {
+    max-width: 100%;
+    height: auto;
+  }
+  /* Hide the caption text */
+  #caption {
+    display: none;
+  }
+  
+  /* Show the close button on small screens */
+  .close {
+    display: block;
+  }
+  
+  /* Center the close button on small screens */
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer; /* Add pointer cursor on hover */
+  }
+
+  .modal-content {
+    margin-top: 40%;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    height: auto;
+    animation: zoomIn 0.5s; /* Optional zoom-in animation */
+    opacity: 1;
+  }
+
+}
+
 
 /* Animation */
 @keyframes zoomIn {
@@ -842,9 +940,20 @@ nav li.active {
   padding: 20px;
   text-align: center;
 }
+@media screen and (max-width: 600px) {
+  #main-footer {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+ p{
+   font-size: 18px;
+ }
 
-.secondary-nav {
-  margin-bottom: 20px;
+
+
 }
 
 .secondary-nav ul {
@@ -886,7 +995,22 @@ nav li.active {
   margin-top: 20px;
   text-align: center;
   display: flex;
-  margin-left: auto;
+  justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
+  .copyright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.copyright p {
+  margin-bottom: 5px;
+  font-size: 14px;
+  line-height: 1.5;
+  align-items: center;
 }
 
 .copyright a {
@@ -1063,12 +1187,24 @@ body.showCart .container{
   margin-top: 20px;
 }
 
-.copyright2 a{
+.terms{
+align-items: center;
+display: block;
+
+}
+
+@media only screen  and (max-width: 200px) {
+ .terms{
   display: flex;
+  flex-direction: row;
   align-items: center;
-  margin-left: 250px;
+  justify-content: flex-end;
+ }
+}
+
+.copyright2 a{
   color: #ff0e0e;
-  text-decoration: none;
+
 }
 
 
@@ -1265,4 +1401,173 @@ body.showCart .container{
     flex-wrap: wrap;
     padding: 10px;
   }
+}
+
+
+
+
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 0 10px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 5px 10px;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #ffd700;
+}
+
+/* Hamburger Menu */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background-color: #333;
+      position: absolute;
+      top: 60px;
+      left: 0;
+  }
+
+  .navbar.active {
+      display: flex;
+  }
+
+  .nav-links {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .nav-links li {
+      margin: 10px 0;
+  }
+
+  .menu-toggle {
+      display: block;
+  }
+}
+
+
+
+.toggle_btn{
+  display: none;
+}
+
+.exit_btn{
+  display: none;
+}
+
+
+/* Reset and common styles */
+body, ul, li {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+  
+.drawer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.navigation ul {
+  list-style: none;
+  padding: 0;
+}
+
+.navigation li {
+  padding: 15px 20px;
+}
+
+.navigation li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navigation li a:hover {
+  color: #ffa500;
+}
+
+.toggle_btn, .exit_btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000000;
+  color: white;
+  padding: 10px 15px;
+  cursor: pointer;
+  position: fixed;
+  z-index: 1001;
+}
+
+.toggle_btn {
+  top: 10px;
+  left: 10px;
+}
+
+.exit_btn {
+  top: 10px;
+  right: 10px;
+  display: none;
+}
+
+.drawer.open ~ .exit_btn {
+  display: flex;
+}
+
 }

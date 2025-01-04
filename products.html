@@ -12,31 +12,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Products | Tchulu</title>
+
+    <style>
+        @media only screen {
+            #big{
+                margin: 0 auto;
+                width: 70%;
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navigation">
-        <ul>
-            <img src="_images/logo.png" alt="Tchulu Oils" width="900px" class="logo">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li> 
-            <li><a href="services.html">Services</a></li>
-            <li class="currentPage">Products</li>
-            <li><a href="reviews.html">Reviews</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-    </nav>
+    <div class="toggle_btn">☰ Menu</div>
+    <div id="drawer" class="drawer">
+        <nav class="navigation">
+            <ul>
+                <img class="logo" src="_images/logo.png" alt="Tchulu Oils">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li class="currentPage">Products</li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="exit_btn">✖ Close</div>
     
     <h1 class="title">PRODUCTS</h1>
     
     <div class="products">
         <div class="product">
-            <h3 class="title2">Tchulu oil</h3>
-            <img src="_images/Product_Tchulu_Oil1.jpg" alt="Tchulu oil, bottle with rich oils" class="center">
+            <h3 class="title2">Tchulu Oils</h3>
+            <img src="_images/Product_Tchulu_Oil1.jpg" alt="Tchulu oil, bottle with rich oils" class="center" id="big">
             <p class="center">Tchulu oil is cautiously -crafted with precision and sourced from herbal ingredients .</p>
         </div>
         <div class="product">
-            <h3 class="title2">Tchulu perfume</h3>
-            <img src="_images/Product_perfumes1.jpg" alt="Tchulu perfume , spray bottle" class="centerProduct">
+            <h3 class="title2">Tchulu Perfumes</h3>
+            <img src="_images/Product_perfumes1.jpg" alt="Tchulu perfume , spray bottle" class="centerProduct" id="big">
             <p class="center">Tchulu perfume transforms your every moment into a cherished memory with -African Rosewood 🌹🌹anchored in sweet, floral and musky base or African Oud 🪵which opens with deep, woody with blending hints of spice and earthiness!</p>
         </div>
     </div>
@@ -55,8 +69,8 @@
             <li class="currentPageFooter">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="services.html">Services</a></li>
-            <li><a href="gallery.html">Cake Gallery</a></li>
-            <li><a href="contactUs.html">Contact Us</a></li>
+            <li><a href="reviews.html">reviews</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </nav>
         <p class="copyright">
@@ -70,13 +84,13 @@
           <br>Powered by "Tchulu" Web Hosting &copy; 2019 Tchulu. All rights reserved.
       </p>
         <a href="https://www.facebook.com/mytchulu_oils/"> <img id="fb" src="_images/fb.png" alt="facebook" width="17" height="20"></a>
-        <a href="https://www.instagram.com/tchulu_oils/"><img id="fb" src="_images/instagram.png" alt="Instagram" width="17" height ="20"></a>
+        <a href="https://www.instagram.com/mytchulu_oils/"><img id="fb" src="_images/instagram.png" alt="Instagram" width="17" height ="20"></a>
         <p class="copyright2"><a href="terms&conditions.html">Terms & Conditions</a></p>
         <p class="copyright2"><a href="privacyPolicy.html">Privacy Policy</a></p>
         <p class="copyright2"><a href="acessibility-statement.html">Accessibility Statement</a></p>
       </footer>
 
-    <script src="script.js"></script>
-    <script src="https://kit.fontawesome.com/06055d4943.js"></script>
+  
+    <script src="toggle.js"></script>
 </body>
 </html>

@@ -205,6 +205,15 @@ const initApp = () => {
 };
 
 // Initialize the app
-document.addEventListener('DOMContentLoaded', () => {
-    initApp();
+const toggleBtn = document.querySelector('.toggle_btn');
+const exitBtn = document.querySelector('.exit_btn');
+const drawer = document.getElementById('drawer');
+
+toggleBtn.addEventListener('click', () => {
+    drawer.classList.add('open');
 });
+
+exitBtn.addEventListener('click', () => {
+    drawer.classList.remove('open');
+});
+
